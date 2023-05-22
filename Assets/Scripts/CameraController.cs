@@ -5,10 +5,12 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] Camera cam;
-
+    float frustumScale;
     private void Start()
     {
-        cam = Camera.main;
+        var camDistance = cam.transform.position.y;
+        var frustumHeight = 2 * camDistance * Mathf.Tan(cam.fieldOfView * .5f * Mathf.Deg2Rad);
+        frustumScale = frustumHeight / Screen.height;
     }
 
     void Update()
@@ -29,7 +31,8 @@ public class CameraController : MonoBehaviour
     private void Drag(Touch[] touches)
     {
         var touch = Input.GetTouch(0);
-        cam.transform.position -= new Vector3(touch.deltaPosition.x, 0, touch.deltaPosition.y) * 0.001f;
+
+        cam.transform.position -= new Vector3(touch.deltaPosition.x, 0, touch.deltaPosition.y) * frustumScale;
     }
 
     private void Zoom(Touch[] touches)
@@ -47,9 +50,13 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            cam.transform.position += Vector3.forward * deltaDistance * .01f;
-            var z = Mathf.Clamp(cam.transform.position.z, -10, -1);
-            cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, z);
+            var camDistance = cam.transform.position.y;
+            var frustumHeight = 2 * camDistance * Mathf.Tan(cam.fieldOfView * .5f * Mathf.Deg2Rad);
+            frustumScale = frustumHeight / Screen.height;
+
+            cam.transform.position -= Vector3.up * deltaDistance * .01f;
+            var y = Mathf.Clamp(cam.transform.position.z, 10, 100);
+            cam.transform.position = new Vector3(cam.transform.position.x, y, cam.transform.position.z);
         }
     }
 }
