@@ -12,7 +12,7 @@ public class PlayManager : MonoBehaviour
     [SerializeField] CustomEvent gameOverEvent;
     [SerializeField] CustomEvent playerWinEvent;
     public UnityEvent<int> OnScoreUpdate;
-    int coin = 100;
+    int coin;
 
     private void OnEnable()
     {

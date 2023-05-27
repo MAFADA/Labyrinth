@@ -9,6 +9,6 @@ public class ScoreText : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        scoreText.text = score.ToString();
+        scoreText.text = "Coins: " + score.ToString();
     }
 }

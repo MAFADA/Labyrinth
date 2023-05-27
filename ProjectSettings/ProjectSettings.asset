@@ -249,8 +249,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/PERSONAL/Projects/Unity/UserBuild.keystore
-  AndroidKeyaliasName: userkey
+  AndroidKeystoreName: C:/Users/MAFADA/OneDrive/Pictures/UserBuild1.keystore
+  AndroidKeyaliasName: userbuild1
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
